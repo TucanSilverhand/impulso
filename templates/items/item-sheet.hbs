@@ -1,0 +1,38 @@
+<form class="impulso sheet item-sheet" autocomplete="off">
+  <header class="sheet-header flexrow">
+    <div class="header-fields">
+      <h1>{{localize "IMPULSO.Sheets.Item.Header"}}</h1>
+      <input type="text" name="name" value="{{item.name}}" placeholder="{{localize 'Name'}}" />
+      <select name="type">
+        {{selectOptions types selected=item.type localize=true}}
+      </select>
+    </div>
+    <div class="portrait">
+      <img class="profile-img" src="{{item.img}}" data-edit="img" alt="{{item.name}}" />
+    </div>
+  </header>
+
+  <main class="sheet-body">
+    <section class="properties grid grid-2col">
+      <div>
+        <label>{{localize "IMPULSO.Item.Rank"}}</label>
+        <input type="number" name="system.rank" value="{{system.rank}}" />
+      </div>
+      <div>
+        <label>{{localize "IMPULSO.Item.Cost"}}</label>
+        <input type="number" name="system.cost" value="{{system.cost}}" />
+      </div>
+    </section>
+
+    <section class="description">
+      <label class="editor-label">{{localize "IMPULSO.Item.Description"}}</label>
+      {{#if editable}}
+      <prose-mirror name="system.description" value="{{system._source.description}}" document-uuid="{{item.uuid}}">
+        {{{system.description}}}
+      </prose-mirror>
+      {{else}}
+      <div class="editor-content">{{{system.description}}}</div>
+      {{/if}}
+    </section>
+  </main>
+</form>

@@ -1,0 +1,21 @@
+# Build / dependencias
+node_modules/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editores
+.idea/
+.vscode/
+*.code-workspace
+
+# Entornos / logs
+.env
+*.log
+!packs/**/*.log
+npm-debug.log*
+
+# LevelDB packs — locks de runtime
+packs/*/LOCK

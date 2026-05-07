@@ -1,0 +1,1362 @@
+body {
+  font-family: "Roboto", "Segoe UI", system-ui, sans-serif;
+}
+
+/* Hoja de actor Impulso */
+.impulso.sheet.actor {
+  --imp-font-family: "Montserrat", "Segoe UI", "Helvetica Neue", sans-serif;
+  --imp-font-size: 0.58rem;
+  --imp-font-weight: 600;
+  --imp-text: #0f243f;
+  --imp-focus: #0f3c6b;
+  --imp-bg: #a33730;
+  --imp-surface: rgba(255, 255, 255, 0.08);
+  --imp-label: rgba(255, 255, 255, 0.92);
+  font-size: var(--imp-font-size);
+}
+
+.impulso.sheet.actor .actor-sheet,
+.impulso.sheet.actor .actor-sheet * {
+  font-family: var(--imp-font-family);
+  font-size: inherit !important;
+  font-weight: var(--imp-font-weight);
+  color: var(--imp-text);
+  box-sizing: border-box;
+}
+
+.impulso.sheet.actor .window-content {
+  padding: 0;
+  overflow-y: auto;
+  background: transparent !important;
+}
+
+.impulso.sheet.actor .actor-sheet {
+  padding: 0.5rem;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: transparent;
+}
+.impulso.sheet.actor {
+  background: transparent !important;
+}
+
+.impulso.sheet.actor .actor-header {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  gap: 0.5rem;
+  background: var(--imp-bg);
+  border-radius: 16px;
+  padding: 0.5rem;
+  color: #fff;
+  align-items: center;
+}
+
+.impulso.sheet.actor .header-left {
+  display: grid;
+  grid-template-columns: 3fr auto 0.3fr 0.3fr auto 0.3fr;
+  grid-template-areas:
+    "input-name label-ego input-ego-temp input-ego-total label-corr input-corr"
+    "input-desc input-desc input-desc input-desc input-desc input-desc"
+    "label-state label-state label-state label-state label-state label-state"
+    "state-row state-row state-row state-row state-row state-row";
+  gap: 0.35rem 0.75rem;
+  color: var(--imp-label);
+}
+
+.impulso.sheet.actor #actor-name {
+  grid-area: input-name;
+}
+.impulso.sheet.actor .ego-label {
+  grid-area: label-ego;
+  align-self: center;
+}
+.impulso.sheet.actor #actor-ego-temp {
+  grid-area: input-ego-temp;
+}
+.impulso.sheet.actor #actor-ego-total {
+  grid-area: input-ego-total;
+}
+.impulso.sheet.actor .corr-label {
+  grid-area: label-corr;
+  align-self: center;
+}
+.impulso.sheet.actor #actor-corruption {
+  grid-area: input-corr;
+}
+.impulso.sheet.actor #actor-description {
+  grid-area: input-desc;
+}
+.impulso.sheet.actor .state-row {
+  grid-area: state-row;
+}
+.impulso.sheet.actor #actor-ego-temp,
+.impulso.sheet.actor #actor-ego-total,
+.impulso.sheet.actor #actor-corruption {
+  width: 40px;
+  max-width: 40px;
+  text-align: center;
+}
+
+.impulso.sheet.actor .label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: var(--imp-font-weight);
+  color: var(--imp-label);
+  align-self: center;
+}
+
+.impulso.sheet.actor input[type="text"],
+.impulso.sheet.actor input[type="number"],
+.impulso.sheet.actor textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  padding: 0.55rem 0.65rem;
+  background: var(--imp-surface);
+  color: #fff;
+  font-size: var(--imp-font-size);
+  font-weight: var(--imp-font-weight);
+}
+
+.impulso.sheet.actor input:focus,
+.impulso.sheet.actor textarea:focus {
+  outline: 2px solid var(--imp-focus);
+  border-color: transparent;
+}
+
+.impulso.sheet.actor textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.impulso.sheet.actor .state-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.impulso.sheet.actor .state-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.impulso.sheet.actor .state-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  color: #fff;
+}
+
+.impulso.sheet.actor .state-chip span {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: var(--imp-font-weight);
+}
+
+.impulso.sheet.actor .header-photo {
+  display: flex;
+  justify-content: center;
+}
+
+.impulso.sheet.actor .profile-img {
+  width: 100%;
+  max-height: 180px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.impulso.sheet.actor .actor-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #1a2f4a 0%, #152638 100%);
+  border-radius: 12px;
+  padding: 0.375rem 0.5rem;
+  margin-top: 0;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  flex-wrap: wrap;
+}
+
+.impulso.sheet.actor .roll-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+}
+
+.impulso.sheet.actor .dice-icon {
+  font-size: 1.5rem;
+  color: #ffd700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.impulso.sheet.actor .difficulty-select {
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: var(--imp-surface);
+  color: #fff;
+  font-size: var(--imp-font-size);
+  font-weight: var(--imp-font-weight);
+  cursor: pointer;
+  min-width: 60px;
+}
+
+.impulso.sheet.actor .difficulty-select:focus {
+  outline: 2px solid var(--imp-focus);
+  border-color: transparent;
+}
+
+.impulso.sheet.actor .advantage-check,
+.impulso.sheet.actor .disadvantage-check {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: background 0.2s;
+}
+
+.impulso.sheet.actor .advantage-check:hover,
+.impulso.sheet.actor .disadvantage-check:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.impulso.sheet.actor .roll-controls .advantage-check,
+.impulso.sheet.actor .roll-controls .disadvantage-check {
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.impulso.sheet.actor .roll-controls .advantage-check:hover,
+.impulso.sheet.actor .roll-controls .disadvantage-check:hover {
+  background: none;
+}
+
+.impulso.sheet.actor .advantage-check span,
+.impulso.sheet.actor .disadvantage-check span {
+  color: #fff;
+  font-size: var(--imp-font-size);
+  font-weight: var(--imp-font-weight);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.impulso.sheet.actor .advantage-check input[type="checkbox"],
+.impulso.sheet.actor .disadvantage-check input[type="checkbox"] {
+  width: auto;
+  cursor: pointer;
+}
+
+.impulso.sheet.actor .action-button {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: linear-gradient(135deg, #2a4a6a 0%, #1f3a55 100%);
+  color: #fff;
+  font-size: var(--imp-font-size);
+  font-weight: var(--imp-font-weight);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.impulso.sheet.actor .action-button:hover {
+  background: linear-gradient(135deg, #3a5a7a 0%, #2f4a65 100%);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.impulso.sheet.actor .action-button i {
+  font-size: 1rem;
+}
+
+.impulso.sheet.actor .actor-body {
+  margin-top: 0;
+  display: grid;
+  gap: 0;
+  background: linear-gradient(135deg, #0d2340 0%, #0a1a30 60%, #081427 100%);
+  border-radius: 16px;
+  padding: 0.5rem;
+  border: 2px solid #0a1e3a;
+  box-shadow: 0 10px 24px rgba(5, 10, 20, 0.35);
+}
+
+.impulso.sheet.actor.actor-ng .actor-header {
+  background: #1e4d3d;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.impulso.sheet.actor.actor-ng .actor-actions {
+  background: linear-gradient(135deg, #1a3330 0%, #152a28 100%);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.impulso.sheet.actor.actor-ng .actor-actions .roll-controls {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.impulso.sheet.actor.actor-ng .sheet-tabs .item.active {
+  background: linear-gradient(135deg, #1e4d3d 0%, #1a3f33 100%);
+}
+
+.impulso.sheet.actor.actor-ng .actor-body {
+  background: linear-gradient(135deg, #0d2a22 0%, #0a2019 60%, #081a14 100%);
+  border-color: #0a2419;
+  box-shadow: 0 10px 30px rgba(5, 20, 15, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.impulso.sheet.actor.actor-ng .tab-content {
+  background: linear-gradient(135deg, #0d2a22 0%, #0a2019 60%, #081a14 100%);
+  border-color: #0a2419;
+}
+
+.impulso.sheet.actor.actor-ng .body-section {
+  display: grid;
+  gap: 0;
+}
+
+.impulso.sheet.actor.actor-ng .sheet-body {
+  flex: 1;
+  overflow: hidden;
+}
+
+.impulso.sheet.actor.actor-ng .sheet-body .tab.active {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.impulso.sheet.actor.actor-ng .tab-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.impulso.sheet.actor.actor-ng .tab-content prose-mirror,
+.impulso.sheet.actor.actor-ng .tab-content .editor-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.impulso.sheet.actor.actor-lite .actor-header {
+  background: #1e3d5a;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.impulso.sheet.actor.actor-lite .actor-actions {
+  background: linear-gradient(135deg, #1a2a3a 0%, #15222e 100%);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.impulso.sheet.actor.actor-lite .actor-actions .roll-controls {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.impulso.sheet.actor.actor-lite .sheet-tabs .item.active {
+  background: linear-gradient(135deg, #1e3d5a 0%, #1a3550 100%);
+}
+
+.impulso.sheet.actor.actor-lite .actor-body {
+  background: linear-gradient(135deg, #0d1f2a 0%, #0a1a25 60%, #08151f 100%);
+  border-color: #0a1f2e;
+  box-shadow: 0 10px 30px rgba(5, 15, 25, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.impulso.sheet.actor.actor-lite .tab-content {
+  background: linear-gradient(135deg, #0d1f2a 0%, #0a1a25 60%, #08151f 100%);
+  border-color: #0a1f2e;
+}
+
+.impulso.sheet.actor.actor-lite .body-section {
+  display: grid;
+  gap: 0;
+}
+
+.impulso.sheet.actor.actor-lite .sheet-body {
+  flex: 1;
+  overflow: hidden;
+}
+
+.impulso.sheet.actor.actor-lite .sheet-body .tab.active {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.impulso.sheet.actor.actor-lite .tab-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.impulso.sheet.actor.actor-lite .tab-content prose-mirror,
+.impulso.sheet.actor.actor-lite .tab-content .editor-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.impulso.sheet.actor.actor-lite .ventajas-grid {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr auto 1fr;
+  grid-template-rows: repeat(3, auto);
+  gap: 0.3rem;
+  padding: 0.3rem;
+}
+
+.impulso.sheet.actor.actor-lite .ventajas-grid .ventajas-grid-label {
+  grid-row: 1 / span 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #cfe0ff;
+  background: linear-gradient(135deg, #1e3d5a 0%, #1a3550 100%);
+  border-radius: 6px;
+}
+
+.impulso.sheet.actor.actor-lite .ventajas-grid .ventajas-grid-label.is-ventajas {
+  grid-column: 1;
+}
+
+.impulso.sheet.actor.actor-lite .ventajas-grid .ventajas-grid-label.is-desventajas {
+  grid-column: 4;
+}
+
+.impulso.sheet.actor.actor-lite .ventajas-grid .cell {
+  grid-template-columns: 1fr 56px;
+  gap: 6px;
+}
+
+.impulso.sheet.actor.actor-lite .ventajas-grid .value-input {
+  height: 26px;
+  line-height: 26px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.impulso.sheet.actor.actor-lite .extras-section {
+  position: relative;
+}
+
+.impulso.sheet.actor.actor-lite .extras-handle {
+  position: absolute;
+  top: 6px;
+  left: 4px;
+  cursor: grab;
+  font-size: 0.85rem;
+  color: rgba(207, 224, 255, 0.6);
+  z-index: 5;
+  user-select: none;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.impulso.sheet.actor.actor-lite .extras-handle:hover {
+  color: #cfe0ff;
+  background: rgba(30, 61, 90, 0.5);
+}
+
+.impulso.sheet.actor.actor-lite .extras-handle:active {
+  cursor: grabbing;
+}
+
+.impulso.sheet.actor.actor-lite .extras-section.extras-shift-1 .extras-label {
+  grid-column: 2;
+}
+.impulso.sheet.actor.actor-lite .extras-section.extras-shift-1 .extras-cell {
+  grid-column: 3;
+}
+
+.impulso.sheet.actor.actor-lite .extras-section.extras-shift-2 .extras-label {
+  grid-column: 3;
+}
+.impulso.sheet.actor.actor-lite .extras-section.extras-shift-2 .extras-cell {
+  grid-column: 4;
+}
+
+.impulso.sheet.actor.actor-lite .impulso-personal-cell {
+  grid-template-columns: 1fr auto;
+  gap: 6px;
+  align-items: center;
+}
+
+.impulso.sheet.actor.actor-lite .stepper {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.impulso.sheet.actor.actor-lite .stepper .value-input {
+  width: 36px;
+}
+
+.impulso.sheet.actor.actor-lite .stepper-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: linear-gradient(135deg, #1e3d5a 0%, #1a3550 100%);
+  color: #cfe0ff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  line-height: 1;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.impulso.sheet.actor.actor-lite .stepper-btn:hover {
+  background: linear-gradient(135deg, #2a4d6e 0%, #244560 100%);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.impulso.sheet.actor.actor-lite .stepper-btn:active {
+  transform: translateY(1px);
+}
+
+
+.impulso.sheet.actor.actor-lite .extras-section .body-row.drag-target-1 {
+  background: linear-gradient(to right, transparent 46%, rgba(30, 61, 90, 0.25) 46%, rgba(30, 61, 90, 0.25) 72%, transparent 72%);
+}
+
+.impulso.sheet.actor.actor-lite .extras-section .body-row.drag-target-2 {
+  background: linear-gradient(to right, transparent 72%, rgba(30, 61, 90, 0.25) 72%, rgba(30, 61, 90, 0.25) 98%, transparent 98%);
+}
+
+.impulso.sheet.actor.actor-lite .extras-section .body-row.drag-target-0 {
+  background: linear-gradient(to right, transparent 20%, rgba(30, 61, 90, 0.25) 20%, rgba(30, 61, 90, 0.25) 46%, transparent 46%);
+}
+
+.impulso.sheet.actor .body-row {
+  display: grid;
+  grid-template-columns: 20% 26% 26% 26%;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.impulso.sheet.actor .body-header .body-col {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: var(--imp-font-weight);
+  color: #0f243f;
+}
+
+.impulso.sheet.actor .body-col {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid #cbd5e8;
+  padding: 0;
+  color: #0f243f;
+  min-height: 18px;
+}
+.impulso.sheet.actor .cell {
+  display: grid;
+  grid-template-columns: 85% 15%;
+  align-items: center;
+}
+.impulso.sheet.actor .cell.cell-triple {
+  grid-template-columns: 70% 15% 15%;
+}
+.impulso.sheet.actor .value-input {
+  text-align: center;
+  border: 1px solid #b7c4e2;
+  background: #eef2ff;
+  color: #000 !important;
+  height: 18px;
+  line-height: 18px;
+  font-size: var(--imp-font-size);
+  font-weight: var(--imp-font-weight);
+  border-radius: 0;
+}
+.impulso.sheet.actor .origin-input {
+  text-align: center;
+  border: 1px solid #b7c4e2;
+  background: #eef2ff;
+  color: #000 !important;
+  height: 18px;
+  line-height: 18px;
+  font-size: var(--imp-font-size);
+  font-weight: var(--imp-font-weight);
+  border-radius: 0;
+}
+.impulso.sheet.actor .body-row:nth-of-type(1) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(1) .origin-input {
+  background: #f2e9ff;
+}
+.impulso.sheet.actor .body-row:nth-of-type(2) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(2) .origin-input {
+  background: #e2f8f2;
+}
+.impulso.sheet.actor .body-row:nth-of-type(3) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(4) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(5) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(3) .origin-input,
+.impulso.sheet.actor .body-row:nth-of-type(4) .origin-input,
+.impulso.sheet.actor .body-row:nth-of-type(5) .origin-input {
+  background: #fff6d6;
+}
+.impulso.sheet.actor .body-row:nth-of-type(6) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(7) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(8) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(6) .origin-input,
+.impulso.sheet.actor .body-row:nth-of-type(7) .origin-input,
+.impulso.sheet.actor .body-row:nth-of-type(8) .origin-input {
+  background: #e6f0ff;
+}
+.impulso.sheet.actor .body-row:nth-of-type(9) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(10) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(9) .origin-input,
+.impulso.sheet.actor .body-row:nth-of-type(10) .origin-input {
+  background: #ffe4f2;
+}
+.impulso.sheet.actor .body-row:nth-of-type(11) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(11) .origin-input {
+  background: #dff6f2;
+}
+.impulso.sheet.actor .body-row:nth-of-type(12) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(13) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(12) .origin-input,
+.impulso.sheet.actor .body-row:nth-of-type(13) .origin-input {
+  background: #f3e0ff;
+}
+.impulso.sheet.actor .body-row:nth-of-type(14) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(14) .origin-input {
+  background: #f7efd9;
+}
+.impulso.sheet.actor .body-row:nth-of-type(15) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(15) .origin-input {
+  background: #e6f0ff;
+}
+.impulso.sheet.actor .body-row:nth-of-type(16) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(17) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(18) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(16) .origin-input,
+.impulso.sheet.actor .body-row:nth-of-type(17) .origin-input,
+.impulso.sheet.actor .body-row:nth-of-type(18) .origin-input {
+  background: #ffe4f2;
+}
+.impulso.sheet.actor .body-row > .body-col:first-child {
+  text-align: right;
+  font-weight: var(--imp-font-weight);
+  background: transparent;
+  border: none;
+  color: #fff;
+  min-height: 18px;
+}
+.impulso.sheet.actor .label-span {
+  display: inline-block;
+  padding-right: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: var(--imp-font-weight);
+  line-height: 18px;
+}
+.impulso.sheet.actor .body-col input[type="text"] {
+  width: 100%;
+  border: 1px solid #b7c4e2;
+  padding: 0;
+  height: 18px;
+  line-height: 18px;
+  border-radius: 0;
+  background: #eef2ff;
+  color: #0f243f;
+  font-size: var(--imp-font-size);
+  font-weight: var(--imp-font-weight);
+}
+.impulso.sheet.actor .body-row:nth-of-type(1) .body-col input[type="text"] {
+  background: #f2e9ff;
+}
+.impulso.sheet.actor .body-row:nth-of-type(2) .body-col input[type="text"] {
+  background: #e2f8f2;
+}
+.impulso.sheet.actor .body-row:nth-of-type(3) .body-col input[type="text"],
+.impulso.sheet.actor .body-row:nth-of-type(4) .body-col input[type="text"],
+.impulso.sheet.actor .body-row:nth-of-type(5) .body-col input[type="text"] {
+  background: #fff6d6;
+}
+.impulso.sheet.actor .body-row:nth-of-type(6) .body-col input[type="text"],
+.impulso.sheet.actor .body-row:nth-of-type(7) .body-col input[type="text"],
+.impulso.sheet.actor .body-row:nth-of-type(8) .body-col input[type="text"] {
+  background: #e6f0ff;
+}
+.impulso.sheet.actor .body-row:nth-of-type(9) .body-col input[type="text"],
+.impulso.sheet.actor .body-row:nth-of-type(10) .body-col input[type="text"] {
+  background: #ffe4f2;
+}
+.impulso.sheet.actor .body-row:nth-of-type(11) .body-col input[type="text"] {
+  background: #dff6f2;
+}
+.impulso.sheet.actor .body-row:nth-of-type(12) .body-col input[type="text"],
+.impulso.sheet.actor .body-row:nth-of-type(13) .body-col input[type="text"] {
+  background: #f3e0ff;
+}
+.impulso.sheet.actor .body-row:nth-of-type(14) .body-col input[type="text"] {
+  background: #f7efd9;
+}
+.impulso.sheet.actor .body-row:nth-of-type(15) .body-col input[type="text"] {
+  background: #f0f7ff;
+}
+.impulso.sheet.actor .body-row:nth-of-type(16) .body-col input[type="text"] {
+  background: #e5fff2;
+}
+.impulso.sheet.actor .body-row:nth-of-type(17) .body-col input[type="text"] {
+  background: #eaf0ff;
+}
+.impulso.sheet.actor .body-row:nth-of-type(18) .body-col input[type="text"] {
+  background: #ffeef5;
+}
+
+/* Ventana completamente transparente sin marco */
+.impulso.sheet.actor.window-app {
+  background: transparent !important;
+}
+
+.impulso.sheet.actor .window-content {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.impulso.sheet.actor .body-row:nth-of-type(15) .body-col input[type="text"] {
+  background: #e6f0ff;
+}
+.impulso.sheet.actor .body-row:nth-of-type(16) .body-col input[type="text"],
+.impulso.sheet.actor .body-row:nth-of-type(17) .body-col input[type="text"],
+.impulso.sheet.actor .body-row:nth-of-type(18) .body-col input[type="text"] {
+  background: #ffe4f2;
+}
+.impulso.sheet.actor .body-row:nth-of-type(15) .value-input {
+  background: #e6f0ff;
+}
+.impulso.sheet.actor .body-row:nth-of-type(16) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(17) .value-input,
+.impulso.sheet.actor .body-row:nth-of-type(18) .value-input {
+  background: #ffe4f2;
+}
+
+/* Sombra general para efecto flotante en los componentes */
+.impulso.sheet.actor .actor-header {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.impulso.sheet.actor .actor-body {
+  box-shadow: 0 10px 30px rgba(5, 10, 20, 0.45);
+}
+
+@media (max-width: 900px) {
+  .impulso.sheet.actor .actor-header {
+    grid-template-columns: 1fr;
+  }
+
+  .impulso.sheet.actor .header-left {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "label-name label-ego"
+      "input-name input-ego"
+      "label-corr label-corr"
+      "input-corr input-corr"
+      "label-desc label-desc"
+      "input-desc input-desc"
+      "label-state label-state"
+      "state-row state-row";
+  }
+}
+.impulso.sheet.actor.window-app.app {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.impulso.sheet.actor.window-app.app .window-header {
+  display: none !important; 
+}
+.impulso.sheet.actor.window-app.app .window-content {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.impulso.sheet.actor.window-app.app .window-resizable-handle {
+  display: none !important;
+}
+
+/* Override any Foundry blur/backs for this sheet */
+.app.window-app.impulso.sheet.actor,
+.app.window-app.impulso.sheet.actor .window-content {
+  backdrop-filter: initial !important;
+  -webkit-backdrop-filter: initial !important;
+  background: initial !important;
+  box-shadow: initial !important;
+  border: initial !important;
+}
+
+/* Tabs Navigation */
+.impulso.sheet.actor .sheet-tabs {
+  display: flex;
+  flex: 1;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.impulso.sheet.actor .sheet-tabs .item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--imp-font-size);
+  font-weight: var(--imp-font-weight);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.impulso.sheet.actor .sheet-tabs .item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+.impulso.sheet.actor .sheet-tabs .item.active {
+  background: linear-gradient(135deg, #2a4a6a 0%, #1f3a55 100%);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.impulso.sheet.actor .sheet-tabs .item i {
+  font-size: 1rem;
+}
+
+/* Tab Content */
+.impulso.sheet.actor .sheet-body {
+  flex: 1;
+  overflow: hidden;
+}
+
+.impulso.sheet.actor .sheet-body .tab {
+  display: none;
+}
+
+.impulso.sheet.actor .sheet-body .tab.active {
+  display: block;
+}
+
+.impulso.sheet.actor .tab-content {
+  background: linear-gradient(135deg, #0d2340 0%, #0a1a30 60%, #081427 100%);
+  border-radius: 16px;
+  padding: 1rem;
+  border: 2px solid #0a1e3a;
+  box-shadow: 0 10px 24px rgba(5, 10, 20, 0.35);
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.impulso.sheet.actor .tab-content .editor-label {
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: var(--imp-font-weight);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.25rem;
+}
+
+.impulso.sheet.actor .tab-content textarea {
+  flex: 1;
+  width: 100%;
+  min-height: 350px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  padding: 0.75rem;
+  color: #fff;
+  font-family: var(--imp-font-family);
+  font-size: var(--imp-font-size);
+  font-weight: var(--imp-font-weight);
+  resize: vertical;
+}
+
+.impulso.sheet.actor .tab-content textarea:focus {
+  outline: 2px solid var(--imp-focus);
+  border-color: transparent;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Estilos para el editor ProseMirror */
+.impulso.sheet.actor .tab-content prose-mirror {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 350px;
+}
+
+.impulso.sheet.actor .tab-content prose-mirror .editor-content {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  padding: 0.75rem;
+  color: #fff;
+  overflow-y: auto;
+}
+
+.impulso.sheet.actor .tab-content .editor-content {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  padding: 0.75rem;
+  color: #fff;
+  overflow-y: auto;
+  min-height: 350px;
+}
+
+/* ─── Impulse Counter Floating Panel ─── */
+.impulse-counter.window-app {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.impulse-counter .window-header {
+  background: #a33730;
+  border-radius: 12px 12px 0 0;
+  padding: 0.3rem 0.6rem;
+  cursor: grab;
+  border: none;
+}
+
+.impulse-counter .window-header:active {
+  cursor: grabbing;
+}
+
+.impulse-counter .window-header .window-title {
+  color: #fff;
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.impulse-counter .window-header .header-control[data-action="close"] {
+  display: none !important;
+}
+
+.impulse-counter .window-content {
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: hidden;
+}
+
+.impulse-counter .window-content {
+  background: linear-gradient(135deg, #0d2340 0%, #0a1a30 100%) !important;
+  border: 2px solid #0a1e3a;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 0.5rem 0.6rem !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  overflow: hidden;
+}
+
+.impulse-counter .counter-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.impulse-counter .counter-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  width: 100%;
+}
+
+.impulse-counter .counter-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.impulse-counter span.counter-value {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffd700;
+  text-align: center;
+  min-width: 3rem;
+  display: inline-block;
+  line-height: 1;
+}
+
+.impulse-counter input.counter-value {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffd700 !important;
+  text-align: center;
+  width: 3.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  padding: 0.1rem 0.2rem;
+  line-height: 1;
+}
+
+.impulse-counter input.counter-value:focus {
+  outline: 2px solid #0f3c6b;
+  border-color: transparent;
+}
+
+.impulse-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: linear-gradient(135deg, #2a4a6a 0%, #1f3a55 100%);
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0;
+}
+
+.impulse-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #3a5a7a 0%, #2f4a65 100%);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.impulse-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ─── Roll Card ─── */
+.impulso-roll-card {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.impulso-roll-card .roll-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  background: linear-gradient(135deg, #1a2f4a 0%, #152638 100%);
+  color: #fff;
+}
+
+.impulso-roll-card .roll-card-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.impulso-roll-card .roll-card-title {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.impulso-roll-card .roll-card-name {
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.impulso-roll-card .roll-card-subtitle {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.impulso-roll-card .roll-tag {
+  font-size: 0.5rem;
+  font-weight: 700;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  color: #fff;
+  vertical-align: middle;
+  letter-spacing: 0.04em;
+}
+
+.impulso-roll-card .tag-advantage {
+  background: #8b2020;
+}
+
+.impulso-roll-card .tag-disadvantage {
+  background: #222;
+}
+
+/* Card body */
+.impulso-roll-card .roll-card-body {
+  padding: 0.5rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.roll-success .roll-card-body {
+  background: linear-gradient(180deg, #0a2a1a 0%, #0f3322 100%);
+}
+
+.roll-partial .roll-card-body {
+  background: linear-gradient(180deg, #2a2208 0%, #33290c 100%);
+}
+
+.roll-failure .roll-card-body {
+  background: linear-gradient(180deg, #2a0a0e 0%, #331115 100%);
+}
+
+/* Details / expandable */
+.impulso-roll-card .roll-card-details {
+  width: 100%;
+}
+
+.impulso-roll-card .roll-card-details summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.impulso-roll-card .roll-card-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.impulso-roll-card .roll-card-result {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.impulso-roll-card .roll-card-total {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.roll-success .roll-card-total {
+  color: #2ecc71;
+  text-shadow: 0 0 12px rgba(46, 204, 113, 0.3);
+}
+
+.roll-partial .roll-card-total {
+  color: #f39c12;
+  text-shadow: 0 0 12px rgba(243, 156, 18, 0.3);
+}
+
+.roll-failure .roll-card-total {
+  color: #e74c3c;
+  text-shadow: 0 0 12px rgba(231, 76, 60, 0.3);
+}
+
+.impulso-roll-card .roll-card-vs {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.35);
+  align-self: center;
+}
+
+.impulso-roll-card .roll-card-difficulty {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  align-self: center;
+}
+
+.impulso-roll-card .roll-card-chevron {
+  font-size: 0.5rem;
+  color: rgba(255, 255, 255, 0.25);
+  transition: transform 0.2s;
+  align-self: center;
+  margin-left: 0.15rem;
+}
+
+.impulso-roll-card .roll-card-details[open] .roll-card-chevron {
+  transform: rotate(180deg);
+}
+
+/* Dice grid */
+.impulso-roll-card .roll-card-dice {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.3rem;
+  width: 100%;
+  padding: 0.4rem 0 0.15rem;
+}
+
+.impulso-roll-card .roll-dice-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.impulso-roll-card .roll-die {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 1.3rem;
+  position: relative;
+  transition: opacity 0.2s;
+}
+
+.impulso-roll-card .die-red {
+  background: radial-gradient(circle at 30% 30%, #8b2020, #5a1212);
+  border: 2px solid #a33730;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(163, 55, 48, 0.3);
+}
+
+.impulso-roll-card .die-black {
+  background: radial-gradient(circle at 30% 30%, #333, #111);
+  border: 2px solid #555;
+  color: #eee;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.impulso-roll-card .die-discarded {
+  opacity: 0.3;
+}
+
+.impulso-roll-card .die-discarded .die-value {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+/* Result outcome */
+.impulso-roll-card .roll-card-outcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.1rem;
+  padding-top: 0.15rem;
+}
+
+.impulso-roll-card .roll-card-label {
+  font-size: 0.55rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.impulso-roll-card .roll-card-detail {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.roll-success .roll-card-label {
+  color: #2ecc71;
+}
+
+.roll-success .roll-card-detail {
+  color: #27ae60;
+}
+
+.roll-partial .roll-card-label {
+  color: #f39c12;
+}
+
+.roll-partial .roll-card-detail {
+  color: #e67e22;
+}
+
+.roll-failure .roll-card-label {
+  color: #e74c3c;
+}
+
+.roll-failure .roll-card-detail {
+  color: #c0392b;
+}
+

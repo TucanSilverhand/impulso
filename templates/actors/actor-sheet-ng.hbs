@@ -1,0 +1,458 @@
+<form class="impulso sheet actor-sheet" autocomplete="off">
+  <div class="actor-header">
+    <div class="header-left">
+      <input id="actor-name" class="name-input" type="text" name="name" value="{{actor.name}}" />
+      <span class="label ego-label">Ego</span>
+      <input
+        id="actor-ego-temp"
+        type="text"
+        inputmode="numeric"
+        pattern="\\d{0,2}"
+        maxlength="2"
+        name="system.ego.temp"
+        value="{{system.ego.temp}}"
+        placeholder="Temp"
+      />
+      <input
+        id="actor-ego-total"
+        type="text"
+        inputmode="numeric"
+        pattern="\\d{0,2}"
+        maxlength="2"
+        name="system.ego.total"
+        value="{{system.ego.total}}"
+        placeholder="Total"
+      />
+      {{#if showCorruption}}
+      <span class="label corr-label">Corrupción</span>
+      <input
+        id="actor-corruption"
+        type="text"
+        inputmode="numeric"
+        pattern="\\d{0,2}"
+        maxlength="2"
+        name="system.corrupcion"
+        value="{{system.corrupcion}}"
+      />
+      {{/if}}
+
+      <textarea
+        id="actor-description"
+        name="system.descripcion"
+        rows="2"
+        placeholder="Descripción"
+      >{{system.descripcion}}</textarea>
+
+      <div class="state-row">
+        <span class="label">Estado</span>
+        <div class="state-options">
+          {{#each stateOptions}}
+            <label class="state-chip">
+              <input type="checkbox" name="system.estadoFlags.{{id}}" value="{{id}}" {{checked checked}} />
+              <span>{{label}}</span>
+            </label>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+    <div class="header-photo">
+      <img class="profile-img" src="{{actor.img}}" data-edit="img" alt="{{actor.name}}" />
+    </div>
+  </div>
+
+  <div class="actor-actions">
+    <div class="roll-controls">
+      <div class="dice-icon" data-action="rollDice">
+        <i class="fa-solid fa-dice-d12"></i>
+      </div>
+      <select class="difficulty-select">
+        <option value="6">6</option>
+        <option value="9">9</option>
+        <option value="12">12</option>
+        <option value="15" selected>15</option>
+        <option value="18">18</option>
+        <option value="21">21</option>
+        <option value="24">24</option>
+      </select>
+      <label class="advantage-check">
+        <input type="checkbox" class="advantage-checkbox" />
+        <span>Ventaja</span>
+      </label>
+      <label class="disadvantage-check">
+        <input type="checkbox" class="disadvantage-checkbox" />
+        <span>Desventaja</span>
+      </label>
+    </div>
+
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="principal" data-action="changeTab">
+      <i class="fa-solid fa-user"></i>
+      <span>Principal</span>
+    </a>
+    <a class="item" data-tab="equipo" data-action="changeTab">
+      <i class="fa-solid fa-shield"></i>
+      <span>Equipo</span>
+    </a>
+    <a class="item" data-tab="ventajas" data-action="changeTab">
+      <i class="fa-solid fa-star"></i>
+      <span>Ventajas</span>
+    </a>
+  </nav>
+  </div>
+  <section class="sheet-body">
+    <div class="tab" data-group="primary" data-tab="principal">
+      <div class="actor-body">
+    <div class="body-section">
+    <div class="body-row body-header">
+      <div>&nbsp;</div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.name.nombre" value="{{system.vertical1.name.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.name.valor" value="{{system.vertical1.name.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical2.name.nombre" value="{{system.vertical2.name.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical2.name.valor" value="{{system.vertical2.name.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical3.name.nombre" value="{{system.vertical3.name.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical3.name.valor" value="{{system.vertical3.name.valor}}" />
+      </div></div>
+    </div>
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Descriptor Principal</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input
+          type="text"
+          name="system.vertical1.descriptorPrincipal1.nombre"
+          value="{{system.vertical1.descriptorPrincipal1.nombre}}"
+        />
+        <input class="value-input" type="number" name="system.vertical1.descriptorPrincipal1.valor" value="{{system.vertical1.descriptorPrincipal1.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input
+          type="text"
+          name="system.vertical2.descriptorPrincipal1.nombre"
+          value="{{system.vertical2.descriptorPrincipal1.nombre}}"
+        />
+        <input class="value-input" type="number" name="system.vertical2.descriptorPrincipal1.valor" value="{{system.vertical2.descriptorPrincipal1.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input
+          type="text"
+          name="system.vertical3.descriptorPrincipal1.nombre"
+          value="{{system.vertical3.descriptorPrincipal1.nombre}}"
+        />
+        <input class="value-input" type="number" name="system.vertical3.descriptorPrincipal1.valor" value="{{system.vertical3.descriptorPrincipal1.valor}}" />
+      </div></div>
+    </div>
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Cualidad</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.cualidad1.nombre" value="{{system.vertical1.cualidad1.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.cualidad1.valor" value="{{system.vertical1.cualidad1.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical2.cualidad1.nombre" value="{{system.vertical2.cualidad1.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical2.cualidad1.valor" value="{{system.vertical2.cualidad1.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical3.cualidad1.nombre" value="{{system.vertical3.cualidad1.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical3.cualidad1.valor" value="{{system.vertical3.cualidad1.valor}}" />
+      </div></div>
+    </div>
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Cualidad</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.cualidad2.nombre" value="{{system.vertical1.cualidad2.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.cualidad2.valor" value="{{system.vertical1.cualidad2.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical2.cualidad2.nombre" value="{{system.vertical2.cualidad2.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical2.cualidad2.valor" value="{{system.vertical2.cualidad2.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical3.cualidad2.nombre" value="{{system.vertical3.cualidad2.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical3.cualidad2.valor" value="{{system.vertical3.cualidad2.valor}}" />
+      </div></div>
+    </div>
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Cualidad</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.cualidad3.nombre" value="{{system.vertical1.cualidad3.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.cualidad3.valor" value="{{system.vertical1.cualidad3.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical2.cualidad3.nombre" value="{{system.vertical2.cualidad3.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical2.cualidad3.valor" value="{{system.vertical2.cualidad3.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical3.cualidad3.nombre" value="{{system.vertical3.cualidad3.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical3.cualidad3.valor" value="{{system.vertical3.cualidad3.valor}}" />
+      </div></div>
+    </div>
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Descriptor</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.descriptor1.nombre" value="{{system.vertical1.descriptor1.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.descriptor1.valor" value="{{system.vertical1.descriptor1.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical2.descriptor1.nombre" value="{{system.vertical2.descriptor1.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical2.descriptor1.valor" value="{{system.vertical2.descriptor1.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical3.descriptor1.nombre" value="{{system.vertical3.descriptor1.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical3.descriptor1.valor" value="{{system.vertical3.descriptor1.valor}}" />
+      </div></div>
+    </div>
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Descriptor</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.descriptor2.nombre" value="{{system.vertical1.descriptor2.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.descriptor2.valor" value="{{system.vertical1.descriptor2.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical2.descriptor2.nombre" value="{{system.vertical2.descriptor2.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical2.descriptor2.valor" value="{{system.vertical2.descriptor2.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical3.descriptor2.nombre" value="{{system.vertical3.descriptor2.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical3.descriptor2.valor" value="{{system.vertical3.descriptor2.valor}}" />
+      </div></div>
+    </div>
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Descriptor</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.descriptor3.nombre" value="{{system.vertical1.descriptor3.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.descriptor3.valor" value="{{system.vertical1.descriptor3.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical2.descriptor3.nombre" value="{{system.vertical2.descriptor3.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical2.descriptor3.valor" value="{{system.vertical2.descriptor3.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical3.descriptor3.nombre" value="{{system.vertical3.descriptor3.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical3.descriptor3.valor" value="{{system.vertical3.descriptor3.valor}}" />
+      </div></div>
+    </div>
+    </div>
+
+    <div class="body-section">
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Ventaja</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.ventaja1.nombre" value="{{system.vertical1.ventaja1.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.ventaja1.valor" value="{{system.vertical1.ventaja1.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical2.ventaja1.nombre" value="{{system.vertical2.ventaja1.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical2.ventaja1.valor" value="{{system.vertical2.ventaja1.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical3.ventaja1.nombre" value="{{system.vertical3.ventaja1.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical3.ventaja1.valor" value="{{system.vertical3.ventaja1.valor}}" />
+      </div></div>
+    </div>
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Ventaja</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.ventaja2.nombre" value="{{system.vertical1.ventaja2.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.ventaja2.valor" value="{{system.vertical1.ventaja2.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical2.ventaja2.nombre" value="{{system.vertical2.ventaja2.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical2.ventaja2.valor" value="{{system.vertical2.ventaja2.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical3.ventaja2.nombre" value="{{system.vertical3.ventaja2.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical3.ventaja2.valor" value="{{system.vertical3.ventaja2.valor}}" />
+      </div></div>
+    </div>
+
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Desventaja</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.desventaja.nombre" value="{{system.vertical1.desventaja.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.desventaja.valor" value="{{system.vertical1.desventaja.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical2.desventaja.nombre" value="{{system.vertical2.desventaja.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical2.desventaja.valor" value="{{system.vertical2.desventaja.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical3.desventaja.nombre" value="{{system.vertical3.desventaja.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical3.desventaja.valor" value="{{system.vertical3.desventaja.valor}}" />
+      </div></div>
+    </div>
+    </div>
+
+    <div class="body-section">
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Foco</span></div>
+      <div class="body-col">
+        <div class="cell cell-triple">
+        <input type="text" name="system.vertical1.foco1.nombre" value="{{system.vertical1.foco1.nombre}}" />
+        <input class="origin-input" type="number" name="system.vertical1.foco1.origen" value="{{system.vertical1.foco1.origen}}" />
+        <input class="value-input" type="number" name="system.vertical1.foco1.valor" value="{{system.vertical1.foco1.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell cell-triple">
+        <input type="text" name="system.vertical2.foco1.nombre" value="{{system.vertical2.foco1.nombre}}" />
+        <input class="origin-input" type="number" name="system.vertical2.foco1.origen" value="{{system.vertical2.foco1.origen}}" />
+        <input class="value-input" type="number" name="system.vertical2.foco1.valor" value="{{system.vertical2.foco1.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell cell-triple">
+        <input type="text" name="system.vertical3.foco1.nombre" value="{{system.vertical3.foco1.nombre}}" />
+        <input class="origin-input" type="number" name="system.vertical3.foco1.origen" value="{{system.vertical3.foco1.origen}}" />
+        <input class="value-input" type="number" name="system.vertical3.foco1.valor" value="{{system.vertical3.foco1.valor}}" />
+      </div></div>
+    </div>
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Foco</span></div>
+      <div class="body-col">
+        <div class="cell cell-triple">
+        <input type="text" name="system.vertical1.foco2.nombre" value="{{system.vertical1.foco2.nombre}}" />
+        <input class="origin-input" type="number" name="system.vertical1.foco2.origen" value="{{system.vertical1.foco2.origen}}" />
+        <input class="value-input" type="number" name="system.vertical1.foco2.valor" value="{{system.vertical1.foco2.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell cell-triple">
+        <input type="text" name="system.vertical2.foco2.nombre" value="{{system.vertical2.foco2.nombre}}" />
+        <input class="origin-input" type="number" name="system.vertical2.foco2.origen" value="{{system.vertical2.foco2.origen}}" />
+        <input class="value-input" type="number" name="system.vertical2.foco2.valor" value="{{system.vertical2.foco2.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell cell-triple">
+        <input type="text" name="system.vertical3.foco2.nombre" value="{{system.vertical3.foco2.nombre}}" />
+        <input class="origin-input" type="number" name="system.vertical3.foco2.origen" value="{{system.vertical3.foco2.origen}}" />
+        <input class="value-input" type="number" name="system.vertical3.foco2.valor" value="{{system.vertical3.foco2.valor}}" />
+      </div></div>
+    </div>
+
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Foco de Corrupción</span></div>
+      <div class="body-col">
+        <div class="cell cell-triple">
+        <input type="text" name="system.vertical1.focoCorrupcion.nombre" value="{{system.vertical1.focoCorrupcion.nombre}}" />
+        <input class="origin-input" type="number" name="system.vertical1.focoCorrupcion.origen" value="{{system.vertical1.focoCorrupcion.origen}}" />
+        <input class="value-input" type="number" name="system.vertical1.focoCorrupcion.valor" value="{{system.vertical1.focoCorrupcion.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell cell-triple">
+        <input type="text" name="system.vertical2.focoCorrupcion.nombre" value="{{system.vertical2.focoCorrupcion.nombre}}" />
+        <input class="origin-input" type="number" name="system.vertical2.focoCorrupcion.origen" value="{{system.vertical2.focoCorrupcion.origen}}" />
+        <input class="value-input" type="number" name="system.vertical2.focoCorrupcion.valor" value="{{system.vertical2.focoCorrupcion.valor}}" />
+      </div></div>
+      <div class="body-col">
+        <div class="cell cell-triple">
+        <input type="text" name="system.vertical3.focoCorrupcion.nombre" value="{{system.vertical3.focoCorrupcion.nombre}}" />
+        <input class="origin-input" type="number" name="system.vertical3.focoCorrupcion.origen" value="{{system.vertical3.focoCorrupcion.origen}}" />
+        <input class="value-input" type="number" name="system.vertical3.focoCorrupcion.valor" value="{{system.vertical3.focoCorrupcion.valor}}" />
+      </div></div>
+    </div>
+    </div>
+
+    <div class="body-section">
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Descriptor Principal</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.descriptorPrincipal2.nombre" value="{{system.vertical1.descriptorPrincipal2.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.descriptorPrincipal2.valor" value="{{system.vertical1.descriptorPrincipal2.valor}}" />
+      </div></div>
+
+    </div>
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Cualidad</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.cualidad4.nombre" value="{{system.vertical1.cualidad4.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.cualidad4.valor" value="{{system.vertical1.cualidad4.valor}}" />
+      </div></div>
+
+    </div>
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Cualidad</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.cualidad5.nombre" value="{{system.vertical1.cualidad5.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.cualidad5.valor" value="{{system.vertical1.cualidad5.valor}}" />
+      </div></div>
+
+    </div>
+    <div class="body-row">
+      <div class="body-col"><span class="label-span">Cualidad</span></div>
+      <div class="body-col">
+        <div class="cell">
+        <input type="text" name="system.vertical1.cualidad6.nombre" value="{{system.vertical1.cualidad6.nombre}}" />
+        <input class="value-input" type="number" name="system.vertical1.cualidad6.valor" value="{{system.vertical1.cualidad6.valor}}" />
+      </div></div>
+
+    </div>
+    </div>
+      </div>
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="equipo">
+      <div class="tab-content">
+        <label class="editor-label">Equipo</label>
+        {{#if editable}}
+        <prose-mirror name="system.equipo" value="{{system._source.equipo}}" document-uuid="{{actor.uuid}}">
+          {{{system.equipo}}}
+        </prose-mirror>
+        {{else}}
+        <div class="editor-content">{{{system.equipo}}}</div>
+        {{/if}}
+      </div>
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="ventajas">
+      <div class="tab-content">
+        <label class="editor-label">Ventajas</label>
+        {{#if editable}}
+        <prose-mirror name="system.ventajas" value="{{system._source.ventajas}}" document-uuid="{{actor.uuid}}">
+          {{{system.ventajas}}}
+        </prose-mirror>
+        {{else}}
+        <div class="editor-content">{{{system.ventajas}}}</div>
+        {{/if}}
+      </div>
+    </div>
+  </section>
+</form>

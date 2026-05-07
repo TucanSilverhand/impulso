@@ -1,0 +1,46 @@
+<div class="impulso-roll-card roll-{{outcome.type}}">
+  <div class="roll-card-header">
+    <img class="roll-card-img" src="{{actorImg}}" alt="{{actorName}}" />
+    <div class="roll-card-title">
+      <span class="roll-card-name">{{actorName}}</span>
+      <span class="roll-card-subtitle">{{localize "IMPULSO.Roll.Check"}}
+        {{#if hasAdvantage}} · <span class="roll-tag tag-advantage">{{localize "IMPULSO.Roll.Advantage"}}</span>{{/if}}
+        {{#if hasDisadvantage}} · <span class="roll-tag tag-disadvantage">{{localize "IMPULSO.Roll.Disadvantage"}}</span>{{/if}}
+      </span>
+    </div>
+  </div>
+  <div class="roll-card-body">
+    <details class="roll-card-details">
+      <summary class="roll-card-result">
+        <span class="roll-card-total">{{total}}</span>
+        <span class="roll-card-vs">vs</span>
+        <span class="roll-card-difficulty">{{difficulty}}</span>
+        <i class="roll-card-chevron fa-solid fa-chevron-down"></i>
+      </summary>
+      <div class="roll-card-dice">
+        <div class="roll-dice-col">
+          {{#each redDice}}
+          <div class="roll-die die-red {{#if this.discarded}}die-discarded{{/if}}">
+            <span class="die-value">{{this.value}}</span>
+          </div>
+          {{/each}}
+        </div>
+        <div class="roll-dice-col">
+          {{#each blackDice}}
+          <div class="roll-die die-black {{#if this.discarded}}die-discarded{{/if}}">
+            <span class="die-value">{{this.value}}</span>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </details>
+    <div class="roll-card-outcome">
+      <div class="roll-card-label">
+        <i class="{{outcome.icon}}"></i> {{outcome.label}}
+      </div>
+      {{#if outcome.detail}}
+        <div class="roll-card-detail">{{outcome.detail}}</div>
+      {{/if}}
+    </div>
+  </div>
+</div>

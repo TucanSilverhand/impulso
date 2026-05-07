@@ -1,0 +1,66 @@
+{
+  "id": "impulso",
+  "title": "Impulso",
+  "description": "Core system files for running the Impulso tabletop RPG in Foundry VTT v13.",
+  "version": "0.3.0",
+  "compatibility": {
+    "minimum": 13,
+    "verified": 13
+  },
+  "authors": [
+    {
+      "name": "Impulso Dev Team",
+      "url": "https://github.com/TucanSilverhand/impulso"
+    }
+  ],
+  "esmodules": [
+    "impulso.mjs"
+  ],
+  "styles": [
+    "styles/system.css"
+  ],
+  "packs": [
+    {
+      "name": "impulso-actors",
+      "label": "Impulso Actors",
+      "path": "packs/impulso-actors",
+      "type": "Actor",
+      "system": "impulso"
+    }
+  ],
+  "languages": [
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
+    },
+    {
+      "lang": "en",
+      "name": "Español (fallback)",
+      "path": "lang/es.json"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "pc": {},
+      "npc": {},
+      "minion": {}
+    },
+    "Item": {}
+  },
+  "socket": true,
+  "initiative": "1d6",
+  "grid": {
+    "distance": 5,
+    "units": "m"
+  },
+  "primaryTokenAttribute": "resources.vigor",
+  "secondaryTokenAttribute": "resources.impulse",
+  "url": "https://github.com/TucanSilverhand/impulso",
+  "manifest": "https://github.com/TucanSilverhand/impulso/releases/latest/download/system.json",
+  "download": "https://github.com/TucanSilverhand/impulso/releases/latest/download/impulso.zip",
+  "license": "LICENSE",
+  "readme": "README.md",
+  "bugs": "https://github.com/TucanSilverhand/impulso/issues",
+  "changelog": "https://github.com/TucanSilverhand/impulso/releases"
+}

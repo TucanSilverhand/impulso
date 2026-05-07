@@ -1,0 +1,80 @@
+name: Release
+
+on:
+  push:
+    branches: [production]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read version from system.json
+        id: ver
+        run: |
+          VERSION=$(jq -r '.version' system.json)
+          if [ -z "$VERSION" ] || [ "$VERSION" = "null" ]; then
+            echo "::error::No 'version' field found in system.json"
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Detected version: v$VERSION"
+
+      - name: Skip if release already exists
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view "${{ steps.ver.outputs.tag }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Release ${{ steps.ver.outputs.tag }} already exists. Bump 'version' in system.json to publish a new one."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Inject versioned URLs into system.json
+        if: steps.check.outputs.exists == 'false'
+        env:
+          REPO: ${{ github.repository }}
+          VERSION: ${{ steps.ver.outputs.version }}
+        run: |
+          jq \
+            --arg manifest "https://github.com/${REPO}/releases/latest/download/system.json" \
+            --arg download "https://github.com/${REPO}/releases/download/v${VERSION}/impulso.zip" \
+            '.manifest = $manifest | .download = $download' \
+            system.json > system.json.tmp
+          mv system.json.tmp system.json
+          echo "--- system.json (release) ---"
+          cat system.json
+
+      - name: Build impulso.zip
+        if: steps.check.outputs.exists == 'false'
+        run: |
+          zip -r impulso.zip . \
+            -x ".git/*" ".git" \
+            -x ".github/*" ".github" \
+            -x ".gitignore" \
+            -x ".editorconfig" \
+            -x "*.code-workspace" \
+            -x "node_modules/*" \
+            -x "dist/*" \
+            -x "impulso.zip"
+          unzip -l impulso.zip | tail -20
+
+      - name: Publish GitHub Release
+        if: steps.check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ steps.ver.outputs.tag }}" \
+            --title "${{ steps.ver.outputs.tag }}" \
+            --generate-notes \
+            --target production \
+            system.json impulso.zip

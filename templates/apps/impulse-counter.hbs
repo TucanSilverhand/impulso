@@ -1,0 +1,36 @@
+<div class="impulse-counter-panel">
+  <div class="counter-section">
+    <span class="counter-label">{{localize "IMPULSO.ImpulseCounter.LabelImpulse"}}</span>
+    <div class="counter-controls">
+      <button type="button" class="impulse-btn decrement" data-action="decrementImpulse"
+              {{#unless impulseCount}}disabled{{/unless}}>
+        <i class="fa-solid fa-minus"></i>
+      </button>
+      {{#if isGM}}
+        <input type="number" class="counter-input counter-value" value="{{impulseCount}}" min="0" data-setting="impulseCounter" />
+      {{else}}
+        <span class="counter-value">{{impulseCount}}</span>
+      {{/if}}
+      <button type="button" class="impulse-btn increment" data-action="incrementImpulse">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </div>
+  </div>
+  <div class="counter-section">
+    <span class="counter-label">{{localize "IMPULSO.ImpulseCounter.LabelConsequence"}}</span>
+    <div class="counter-controls">
+      <button type="button" class="impulse-btn decrement" data-action="decrementConsequence"
+              {{#unless consequenceCount}}disabled{{/unless}}>
+        <i class="fa-solid fa-minus"></i>
+      </button>
+      {{#if isGM}}
+        <input type="number" class="counter-input counter-value" value="{{consequenceCount}}" min="0" data-setting="consequenceCounter" />
+      {{else}}
+        <span class="counter-value">{{consequenceCount}}</span>
+      {{/if}}
+      <button type="button" class="impulse-btn increment" data-action="incrementConsequence">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </div>
+  </div>
+</div>
